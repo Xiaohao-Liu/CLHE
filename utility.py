@@ -218,7 +218,7 @@ class Datasets():
         return (content_feature, description_feature, cf_feature)
 
     def get_ui(self):
-        u_i_pairs = np.load(os.path.join(self.path, self.name, 'ui_full.npy'))
+        u_i_pairs = list2pairs(os.path.join(self.path, self.name, 'ui_full.txt'))
 
         indice = np.array(u_i_pairs, dtype=np.int32)
         values = np.ones(len(u_i_pairs), dtype=np.float32)
@@ -229,7 +229,7 @@ class Datasets():
 
     def get_bi_train(self):
 
-        b_i_pairs = np.load(os.path.join(self.path, self.name, 'bi_train.npy'))
+        b_i_pairs = list2pairs(os.path.join(self.path, self.name, 'bi_train.txt'))
 
         indice = np.array(b_i_pairs, dtype=np.int32)
         values = np.ones(len(b_i_pairs), dtype=np.float32)
@@ -240,10 +240,10 @@ class Datasets():
 
     def get_bi(self, task):
 
-        b_i_pairs_i = np.load(os.path.join(
-            self.path, self.name, f'bi_{task}_input.npy'))
-        b_i_pairs_gt = np.load(os.path.join(
-            self.path, self.name, f'bi_{task}_gt.npy'))
+        b_i_pairs_i = list2pairs(os.path.join(
+            self.path, self.name, f'bi_{task}_input.txt'))
+        b_i_pairs_gt = list2pairs(os.path.join(
+            self.path, self.name, f'bi_{task}_gt.txt'))
 
         b_i_graph_i = pairs2csr(
             b_i_pairs_i, (self.num_bundles, self.num_items))
@@ -258,3 +258,13 @@ def pairs2csr(pairs, shape):
     values = np.ones(len(pairs), dtype=np.float32)
     return sp.csr_matrix(
         (values, (indice[:, 0], indice[:, 1])), shape=shape)
+
+def list2pairs(file):
+    pairs = []
+    with open(file, "r", encoding="utf-8") as f:
+        for line in f:
+            l = [int(i) for i in line.split(", ")]
+            b_id = l[0]
+            for i_id in l[1:]:
+                pairs.append([b_id, i_id])
+    return np.array(pairs)
