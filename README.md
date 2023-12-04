@@ -55,4 +55,4 @@ For ease of understanding and implementing our model code, we've included some b
 2. Train CLHE on the dataset POG_dense:
     > python3 -u train.py -g 0 --dataset="pog_dense" --model="CLHE" --item_augment="MD" --bundle_augment="ID" --bundle_ratio=0.5 --bundle_cl_temp=0.05 --bundle_cl_alpha=2 --cl_temp=0.5 --cl_alpha=0.1
 
-    There are two options available for configuring the hyperparameters: 1) modifying the file `config.yaml`, and 2) adding command line arguments, which can be found in the file `main.py`. We offer comprehensive and detailed choices for hyperparameter configuration, and we strongly recommend reading the paper to gain a better understanding of the effect of key hyperparameters.
+    You can find hyperparameter settings for other datasets in `./run.sh`. There are two options available for configuring the hyperparameters: 1) modifying the file `config.yaml`, and 2) adding command line arguments, which can be found in the file `main.py`. We offer comprehensive and detailed choices for hyperparameter configuration, and we strongly recommend reading the paper to gain a better understanding of the effect of key hyperparameters.
