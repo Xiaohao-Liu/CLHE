@@ -50,7 +50,7 @@ For ease of understanding and implementing our model code, we've included some b
 1. Download and decompress the dataset file into the current folder:
     > tar -zxvf dataset.tgr.gz
 
-    We utilize POG, Spotify, and their variants as datasets. These can be downloaded from the [google drive](https://drive.google.com/file/d/1g-3c6whbAR9uEoy89Xnlb9nHeYoChopN/view?usp=sharing). If you use our dataset, please consider citing our paper. Each dataset contains several files, including ui pairs, bi pairs, categorical item information, extracted item features, and collaborative filtering item features.
+    We utilize POG, Spotify, and their variants as datasets. These can be downloaded from the [google drive](https://drive.google.com/file/d/1g-3c6whbAR9uEoy89Xnlb9nHeYoChopN/view?usp=sharing). If you use our dataset, please consider citing our paper. Each dataset contains several files, including ui pairs, bi pairs, categorical item information, extracted item features, and collaborative filtering item features. You can also find the download links within the `item_info.json` file if the raw data is required.
 
 2. Train CLHE on the dataset POG_dense:
     > python3 -u train.py -g 0 --dataset="pog_dense" --model="CLHE" --item_augment="MD" --bundle_augment="ID" --bundle_ratio=0.5 --bundle_cl_temp=0.05 --bundle_cl_alpha=2 --cl_temp=0.5 --cl_alpha=0.1
