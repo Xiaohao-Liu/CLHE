@@ -205,7 +205,7 @@ class HierachicalEncoder(nn.Module):
 
         def random_mask():
             random_tensor = torch.rand(size).to(features.device)
-            mask_bool = random_tensor > dropout_ratio  # the remainders are ture
+            mask_bool = random_tensor < dropout_ratio  # the remainders are true
             masked_feat = features.masked_fill(mask_bool.unsqueeze(-1), 0)
 
             # multimodal fusion >>>
